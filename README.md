@@ -10,6 +10,8 @@
 2. The powerful object tracking method can track the objects automatically, which can avoid label a object repeatedly.
 3. The output can be converted to many format (such as VOC like) using the scripts video_labeler provided.(developing)
 
+![demo1.jpg](https://raw.githubusercontent.com/hahnyuan/video_labeler/master/example/demo1.jpg)
+
 ### requirements
 
 - Python 2.7

@@ -5,7 +5,7 @@ import lib.saver
 def main(args):
     with open(args.labels_file) as f:
         # read the labels file, each line is a label name
-        labels=f.readline().split()
+        labels=f.read().split('\n')
     print("%d labels was created"%len(labels))
     if len(labels)==0:
         print("no labels found")
