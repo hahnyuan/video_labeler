@@ -107,7 +107,7 @@ class VideoStat():
 
 cv2.namedWindow("video")
 cv2.namedWindow("label")
-cv2.namedWindow("show")
+# cv2.namedWindow("show")
 
 class GUILabeler():
     def __init__(self,labels,video_file,box_saver,border=30):
