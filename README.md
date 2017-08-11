@@ -38,7 +38,8 @@ So you can select them in the `label` GUI windows.
 ### Manipulation
 
 - Select a label from the `label` GUI windows.
-- Hold the left bottom of your mouse and drug a rectangle.
+- Press-Hold the left bottom of your mouse until the label name appear then drug a rectangle.
+- Right Click your mouse in the box rectangle will remove that box.
 - Press `Space` will stop the video play, so you can clearly view your label.
 - Press `Esc` will exit the labeler.
 

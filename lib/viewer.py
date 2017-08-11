@@ -70,8 +70,15 @@ class VideoStat():
                 self.boxes[i]=[p0,p1]
             else:
                 remove_list.append(i)
-        map(self.box_remove,remove_list)
+        map(self.remove_box, remove_list)
 
+    def remove_point_box(self,p):
+        # remove the boxes in that point
+        print p
+        for idx,box in enumerate(self.boxes):
+            p0,p1=box
+            if p1[0]>p[0]>p0[0] and p1[1]>p[1]>p0[1]:
+                self.remove_box(idx)
 
     def update(self,im):
         self.frame_id+=1
@@ -85,14 +92,14 @@ class VideoStat():
         cv2.putText(self.video_im, label_name, self.p0, cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
         cv2.imshow("video", self.video_im)
 
-    def box_remove(self,idx):
+    def remove_box(self, idx):
         print "remove box", self.boxes[idx]
         del self.boxes[idx]
         del self.colors[idx]
         del self.trackers[idx]
         del self.labels[idx]
 
-    def box_append(self,label_name):
+    def append_box(self, label_name):
         if self.p0[0]-self.p1[0]>=0 or self.p0[1]-self.p1[1]>=0:
             return
         self.boxes.append([self.p0,self.p1])
@@ -155,8 +162,9 @@ class GUILabeler():
             self.video_stat.is_drug = 0
             self.video_stat.p1 = (x, y)
             print("rect end", x, y)
-            self.video_stat.box_append(self.label_stat.get_label_name())
-
+            self.video_stat.append_box(self.label_stat.get_label_name())
+        elif e== cv2.EVENT_RBUTTONDOWN:
+            self.video_stat.remove_point_box((x,y))
         self.video_stat.p=(x,y)
 
     def label_click(self,e, x, y, flags, param):
