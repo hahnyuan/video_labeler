@@ -101,7 +101,8 @@ class VideoStat():
 
     def append_box(self, label_name):
         if self.p0[0]-self.p1[0]>=0 or self.p0[1]-self.p1[1]>=0:
-            return
+            self.p0,self.p1=(min(self.p0[0],self.p1[0]),min(self.p0[1],self.p1[1])),\
+                            (max(self.p0[0],self.p1[0]),max(self.p0[1],self.p1[1]))
         self.boxes.append([self.p0,self.p1])
         self.colors.append([255,0,255])
         tracker=Tracker()
