@@ -17,7 +17,7 @@ class LabelStat():
         self.select(0)
 
     def select(self,y):
-        idx=int(y/self.h)
+        idx=y/self.h
         cv2.rectangle(self.label_im, (0, self.label * self.h), (self.w, (self.label + 1) * self.h),
                       (100, 100, 100), 3)
         self.label = idx
@@ -70,11 +70,11 @@ class VideoStat():
                 self.boxes[i]=[p0,p1]
             else:
                 remove_list.append(i)
-        list(map(self.remove_box, remove_list))
+        map(self.remove_box, remove_list)
 
     def remove_point_box(self,p):
         # remove the boxes in that point
-        print(p)
+        print p
         for idx,box in enumerate(self.boxes):
             p0,p1=box
             if p1[0]>p[0]>p0[0] and p1[1]>p[1]>p0[1]:
@@ -93,7 +93,7 @@ class VideoStat():
         cv2.imshow("video", self.video_im)
 
     def remove_box(self, idx):
-        print("remove box", self.boxes[idx])
+        print "remove box", self.boxes[idx]
         del self.boxes[idx]
         del self.colors[idx]
         del self.trackers[idx]
@@ -111,7 +111,7 @@ class VideoStat():
         self.labels.append(label_name)
 
     def get_boxes(self):
-        return list(zip(self.boxes,self.labels))
+        return zip(self.boxes,self.labels)
 
 cv2.namedWindow("video")
 cv2.namedWindow("label")
@@ -158,11 +158,11 @@ class GUILabeler():
         if e == cv2.EVENT_LBUTTONDOWN:
             self.video_stat.is_drug = 1
             self.video_stat.p0 = (x, y)
-            print(("rect start", x, y))
+            print("rect start", x, y)
         elif e == cv2.EVENT_LBUTTONUP:
             self.video_stat.is_drug = 0
             self.video_stat.p1 = (x, y)
-            print(("rect end", x, y))
+            print("rect end", x, y)
             self.video_stat.append_box(self.label_stat.get_label_name())
         elif e== cv2.EVENT_RBUTTONDOWN:
             self.video_stat.remove_point_box((x,y))
